@@ -27,10 +27,13 @@ class Server {
     }
 
     middlewares() {
-        this.app.use(cors({
-            origin: 'https://silver-stroopwafel-eaf8c1.netlify.app/'
-        }));
-
+        this.app.use((req, res, next) => {
+            res.header('Access-Control-Allow-Origin', 'https://todo-app-fabio.netlify.app/');
+            res.header('Access-Control-Allow-Headers', 'Authorization, X-API-KEY, Origin, X-Requested-With, Content-Type, Access-Control-Allow-Request-Method');
+            res.header('Access-Control-Allow-Methods', 'GET, PUT, POST, DELETE, OPTIONS');
+            res.header('Allow', 'GET, PUT, POST, DELETE, OPTIONS');
+            next();
+          });
         //Lectura y parseo del body
         this.app.use(express.json())
 

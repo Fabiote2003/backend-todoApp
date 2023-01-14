@@ -27,10 +27,9 @@ class Server {
     }
 
     middlewares() {
-        this.app.use(express.json())
-
-        this.app.use(morgan('tiny'));
         this.app.use(cors());
+        this.app.use(express.json())
+        this.app.use(morgan('tiny'));
         this.app.use(cookieParser())
     }
 
